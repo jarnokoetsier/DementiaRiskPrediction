@@ -57,9 +57,6 @@ server <- function(input, output, session){
       
     })
     
-    
-    
-    
     #################################################################################
     
     # Make predictions
@@ -173,7 +170,11 @@ server <- function(input, output, session){
       output$download_predictedScore_factors <- downloadHandler(
         filename = "predictedScore_MPSs.csv",
         content = function(file){
-          write.table(predictedScore_factors(),file,row.names = FALSE,sep = ",",quote = FALSE)
+          factors <- colnames(predictedScore_factors())
+          output_table <- predictedScore_factors()
+          output_table$SampleID <- rownames(output_table)
+          output_table <- output_table[,c("SampleID", factors)]
+          write.table(output_table,file,row.names = FALSE,sep = ",",quote = FALSE)
         }
       )
       

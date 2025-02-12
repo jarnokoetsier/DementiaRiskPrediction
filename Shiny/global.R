@@ -1,3 +1,4 @@
+options(timeout=3600)
 
 # Load packages
 library(caret)
