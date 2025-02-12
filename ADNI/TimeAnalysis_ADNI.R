@@ -69,13 +69,15 @@ table(predictDF$predClass)
 
 # Histogram of predictions
 predictDF$predClass <- factor(predictDF$predClass, levels = c("Low risk", "Intermediate risk", "High risk"))
+colors <- c("#FDD0A2","#FD8D3C","#D94801")
+colors <- c("#4292C6","grey","#EF3B2C")
 p <- ggplot(predictDF) + 
   geom_histogram(aes(x = log(pred/(1-pred)), fill = predClass),
                  position = "identity",color = "black", bins= 35) +
   theme_classic() +
   xlab("Epi-MCI Score") +
   ylab("Count") +
-  scale_fill_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
+  scale_fill_manual(values = colors) +
   theme(legend.position = "bottom",
         legend.title = element_blank())
 
@@ -158,11 +160,13 @@ kaplanDF$Time <- as.numeric(kaplanDF$Time)/12
 kaplanDF$predClass <- factor(kaplanDF$predClass, levels = c("Low risk", "Intermediate risk", "High risk"))
 table(kaplanDF$predClass)
 
+colors <- c("#FDD0A2","#FD8D3C","#D94801")
+colors <- c("#4292C6","grey","#EF3B2C")
 p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>% 
   ggsurvfit(size = 1.5) +
   add_confidence_interval(alpha = 0.15) +
-  scale_color_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
-  scale_fill_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = colors) +
   theme_classic() +
   ylab("Probability of\nnormal cognition") +
   xlab("Follow-up time (years)") +
@@ -182,7 +186,7 @@ p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>%
                                      face = "italic"))
 
 # Save plot
-ggsave(p, file = "ADNI/TimeAnalysis/KaplanMeier_ADNI_MMSE.jpg", width = 7, height = 5)
+ggsave(p, file = "ADNI/TimeAnalysis/KaplanMeier_ADNI_MMSE1.jpg", width = 7, height = 5)
 
 # Compare low and high risk
 kaplanDF1 <- kaplanDF
@@ -285,11 +289,13 @@ kaplanDF$Time <- as.numeric(kaplanDF$Time)/12
 kaplanDF$predClass <- factor(kaplanDF$predClass, levels = c("Low risk", "Intermediate risk", "High risk"))
 table(kaplanDF$predClass)
 
+colors <- c("#FDD0A2","#FD8D3C","#D94801")
+colors <- c("#4292C6","grey","#EF3B2C")
 p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>% 
   ggsurvfit(size = 1.5) +
   add_confidence_interval(alpha = 0.15) +
-  scale_color_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
-  scale_fill_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = colors) +
   theme_classic() +
   ylab("Probability of\nnormal cognition") +
   xlab("Follow-up time (years)") +
@@ -309,7 +315,7 @@ p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>%
                                      face = "italic"))
 
 # Save plot
-ggsave(p, file = paste0("ADNI/TimeAnalysis/KaplanMeier_ADNI_",var,".jpg"), width = 7, height = 5)
+ggsave(p, file = paste0("ADNI/TimeAnalysis/KaplanMeier_ADNI_",var,"1.jpg"), width = 7, height = 5)
 
 # Compare low and high risk
 kaplanDF1 <- kaplanDF
@@ -412,12 +418,14 @@ kaplanDF$Time <- as.numeric(kaplanDF$Time)/12
 kaplanDF$predClass <- factor(kaplanDF$predClass, levels = c("Low risk", "Intermediate risk", "High risk"))
 table(kaplanDF$predClass)
 
-
+colors <- c("#FDD0A2","#FD8D3C","#D94801")
+colors <- c("#FDD0A2","#F16913","#8C2D04")
+colors <- c("#4292C6","grey","#EF3B2C")
 p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>% 
   ggsurvfit(size = 1.5) +
   add_confidence_interval(alpha = 0.15) +
-  scale_color_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
-  scale_fill_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = colors) +
   theme_classic() +
   ylab("Probability of\nnormal cognition") +
   xlab("Follow-up time (years)") +
@@ -437,7 +445,7 @@ p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>%
                                      face = "italic"))
 
 # Save plot
-ggsave(p, file = paste0("ADNI/TimeAnalysis/KaplanMeier_ADNI_",var,".jpg"), width = 7, height = 5)
+ggsave(p, file = paste0("ADNI/TimeAnalysis/KaplanMeier_ADNI_",var,"1.jpg"), width = 7, height = 5)
 
 # Compare low and high risk
 kaplanDF1 <- kaplanDF[kaplanDF$predClass != "Intermediate risk",]
@@ -536,11 +544,15 @@ kaplanDF$Time <- as.numeric(kaplanDF$Time)/12
 kaplanDF$predClass <- factor(kaplanDF$predClass, levels = c("Low risk", "Intermediate risk", "High risk"))
 table(kaplanDF$predClass)
 
+colors <- c("#FDD0A2","#FD8D3C","#D94801")
+colors <- c("#FDD0A2","#F16913","#8C2D04")
+colors <- c("#4292C6","grey","#EF3B2C")
+
 p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>% 
   ggsurvfit(size = 1.5) +
   add_confidence_interval(alpha = 0.15) +
-  scale_color_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
-  scale_fill_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = colors) +
   theme_classic() +
   ylab("Probability of\nnormal cognition") +
   xlab("Follow-up time (years)") +
@@ -560,7 +572,7 @@ p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>%
                                      face = "italic"))
 
 # Save plot
-ggsave(p, file = paste0("ADNI/TimeAnalysis/KaplanMeier_ADNI_",var,".jpg"), width = 7, height = 5)
+ggsave(p, file = paste0("ADNI/TimeAnalysis/KaplanMeier_ADNI_",var,"1.jpg"), width = 7, height = 5)
 
 # Compare low and high risk
 kaplanDF1 <- kaplanDF[kaplanDF$predClass != "Intermediate risk",]
@@ -658,11 +670,14 @@ kaplanDF$Time <- as.numeric(kaplanDF$Time)/12
 kaplanDF$predClass <- factor(kaplanDF$predClass, levels = c("Low risk", "Intermediate risk", "High risk"))
 table(kaplanDF$predClass)
 
+colors <- c("#FDD0A2","#FD8D3C","#D94801")
+colors <- c("#FDD0A2","#F16913","#8C2D04")
+colors <- c("#4292C6","grey","#EF3B2C")
 p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>% 
   ggsurvfit(size = 1.5) +
   add_confidence_interval(alpha = 0.15) +
-  scale_color_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
-  scale_fill_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = colors) +
   theme_classic() +
   ylab("Probability of\nnormal cognition") +
   xlab("Follow-up time (years)") +
@@ -682,7 +697,7 @@ p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>%
                                      face = "italic"))
 
 # Save plot
-ggsave(p, file = paste0("ADNI/TimeAnalysis/KaplanMeier_ADNI_",var,".jpg"), width = 7, height = 5)
+ggsave(p, file = paste0("ADNI/TimeAnalysis/KaplanMeier_ADNI_",var,"1.jpg"), width = 7, height = 5)
 
 # Compare low and high risk
 kaplanDF1 <- kaplanDF[kaplanDF$predClass != "Intermediate risk",]
@@ -781,12 +796,14 @@ kaplanDF$Time <- as.numeric(kaplanDF$Time)/12
 kaplanDF$predClass <- factor(kaplanDF$predClass, levels = c("Low risk", "Intermediate risk", "High risk"))
 table(kaplanDF$predClass)
 
-
+colors <- c("#FDD0A2","#FD8D3C","#D94801")
+colors <- c("#FDD0A2","#F16913","#8C2D04")
+colors <- c("#4292C6","grey","#EF3B2C")
 p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>% 
   ggsurvfit(size = 1.5) +
   add_confidence_interval(alpha = 0.15) +
-  scale_color_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
-  scale_fill_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = colors) +
   theme_classic() +
   ylab("Probability of\nnormal cognition") +
   xlab("Follow-up time (years)") +
@@ -806,7 +823,7 @@ p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>%
                                      face = "italic"))
 
 # Save plot
-ggsave(p, file = paste0("ADNI/TimeAnalysis/KaplanMeier_ADNI_",var,".jpg"), width = 7, height = 5)
+ggsave(p, file = paste0("ADNI/TimeAnalysis/KaplanMeier_ADNI_",var,"1.jpg"), width = 7, height = 5)
 
 # Compare low and high risk
 kaplanDF1 <- kaplanDF[kaplanDF$predClass != "Intermediate risk",]
@@ -905,11 +922,14 @@ kaplanDF$Time <- as.numeric(kaplanDF$Time)/12
 kaplanDF$predClass <- factor(kaplanDF$predClass, levels = c("Low risk", "Intermediate risk", "High risk"))
 table(kaplanDF$predClass)
 
+colors <- c("#FDD0A2","#FD8D3C","#D94801")
+colors <- c("#FDD0A2","#F16913","#8C2D04")
+colors <- c("#4292C6","grey","#EF3B2C")
 p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>% 
   ggsurvfit(size = 1.5) +
   add_confidence_interval(alpha = 0.15) +
-  scale_color_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
-  scale_fill_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = colors) +
   theme_classic() +
   ylab("Probability of\nnormal cognition") +
   xlab("Follow-up time (years)") +
@@ -929,7 +949,7 @@ p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>%
                                      face = "italic"))
 
 # Save plot
-ggsave(p, file = paste0("ADNI/TimeAnalysis/KaplanMeier_ADNI_",var,".jpg"), width = 7, height = 5)
+ggsave(p, file = paste0("ADNI/TimeAnalysis/KaplanMeier_ADNI_",var,"1.jpg"), width = 7, height = 5)
 
 # Compare low and high risk
 kaplanDF1 <- kaplanDF[kaplanDF$predClass != "Intermediate risk",]
@@ -1028,11 +1048,14 @@ kaplanDF$Time <- as.numeric(kaplanDF$Time)/12
 kaplanDF$predClass <- factor(kaplanDF$predClass, levels = c("Low risk", "Intermediate risk", "High risk"))
 table(kaplanDF$predClass)
 
+colors <- c("#FDD0A2","#FD8D3C","#D94801")
+colors <- c("#FDD0A2","#F16913","#8C2D04")
+colors <- c("#4292C6","grey","#EF3B2C")
 p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>% 
   ggsurvfit(size = 1.5) +
   add_confidence_interval(alpha = 0.15) +
-  scale_color_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
-  scale_fill_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = colors) +
   theme_classic() +
   ylab("Probability of\nnormal cognition") +
   xlab("Follow-up time (years)") +
@@ -1052,7 +1075,7 @@ p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>%
                                      face = "italic"))
 
 # Save plot
-ggsave(p, file = paste0("ADNI/TimeAnalysis/KaplanMeier_ADNI_",var,".jpg"), width = 7, height = 5)
+ggsave(p, file = paste0("ADNI/TimeAnalysis/KaplanMeier_ADNI_",var,"1.jpg"), width = 7, height = 5)
 
 # Compare low and high risk
 kaplanDF1 <- kaplanDF[kaplanDF$predClass != "Intermediate risk",]
@@ -1151,11 +1174,14 @@ kaplanDF$Time <- as.numeric(kaplanDF$Time)/12
 kaplanDF$predClass <- factor(kaplanDF$predClass, levels = c("Low risk", "Intermediate risk", "High risk"))
 table(kaplanDF$predClass)
 
+colors <- c("#FDD0A2","#FD8D3C","#D94801")
+colors <- c("#FDD0A2","#F16913","#8C2D04")
+colors <- c("#4292C6","grey","#EF3B2C")
 p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>% 
   ggsurvfit(size = 1.5) +
   add_confidence_interval(alpha = 0.15) +
-  scale_color_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
-  scale_fill_manual(values = c("#FDD0A2","#FD8D3C","#D94801")) +
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = colors) +
   theme_classic() +
   ylab("Probability of\nnormal cognition") +
   xlab("Follow-up time (years)") +
@@ -1175,7 +1201,7 @@ p <- survfit2(Surv(Time, Test) ~ predClass, data = kaplanDF) %>%
                                      face = "italic"))
 
 # Save plot
-ggsave(p, file = paste0("ADNI/TimeAnalysis/KaplanMeier_ADNI_",var,".jpg"), width = 7, height = 5)
+ggsave(p, file = paste0("ADNI/TimeAnalysis/KaplanMeier_ADNI_",var,"1.jpg"), width = 7, height = 5)
 
 # Compare low and high risk
 kaplanDF1 <- kaplanDF[kaplanDF$predClass != "Intermediate risk",]

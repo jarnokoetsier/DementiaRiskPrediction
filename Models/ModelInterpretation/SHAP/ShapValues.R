@@ -124,17 +124,18 @@ for (i in 1:ncol(plotDF)){
 
 # Prepare data for plotting
 data <- as.data.frame(t(plotDF))
-data <- rbind(rep(0.3,5) , rep(0,5) , data)
+data <- rbind(rep(0.3,14) , rep(0,14) , data)
 data <- data[,c("Alcohol Intake", "BMI", "HDL Chol.", "Type II Diabetes",
                 "Unhealthy Diet", "Low Education", "Age","Total Chol.", "Heart Disease",
                 "Physical Inact.", "Sex", "Smoking", "Syst. Blood Pressure", "Depression")]
 
 # Color vector
 colors_border=rev(c("#EF3B2C","#CB181D", "#99000D") )
+colors_border=rev(c("#FCBBA1","#EF3B2C", "#99000D") )
 colors_in=c( rgb(0.2,0.5,0.5,0.4), rgb(0.8,0.2,0.5,0.4) , rgb(0.7,0.5,0.1,0.4) )
 
 # plot with default options:
-jpeg("Models/ModelInterpretation/SHAP/shaply_emif_new.jpg", width = 8000, height = 7000, quality = 100)
+jpeg("Models/ModelInterpretation/SHAP/shaply_emif_new1.jpg", width = 8000, height = 7000, quality = 100)
 radarchart( data  , axistype=0 , 
             #custom polygon
             pcol=colors_border, plwd=100 , plty=1,
